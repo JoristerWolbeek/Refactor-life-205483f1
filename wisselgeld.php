@@ -27,7 +27,12 @@ foreach($munten as $munt=>$hoeveelMunt) {
     $muntFix = doubleval($munt);
     if($hoeveelMunt >= 1) {
         $tussen=explode(" ", $munt);
-        echo(round($muntFix)." ".$tussen[1]." x ".$hoeveelMunt.PHP_EOL);
+        if($muntFix<1){
+            $muntFix = $muntFix*100;
+            echo($muntFix." ".$tussen[1]." x ".$hoeveelMunt.PHP_EOL);
+        }
+        else{
+            echo($muntFix." ".$tussen[1]." x ".$hoeveelMunt.PHP_EOL);
+        }
     }
 }
-
