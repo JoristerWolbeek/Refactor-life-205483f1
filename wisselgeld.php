@@ -12,30 +12,22 @@ $munten=array (
     "0.05 cent"=>0,
 );
 
-function getValue(){
-    $bedrag = doubleval($argv[1]);
-    $restBedrag = round($bedrag, 2, PHP_ROUND_HALF_UP);
-    makeAndGiveCoin();
-}
+$bedrag = doubleval($argv[1]);
+$restBedrag = $bedrag;
 
-function makeAndGiveCoin(){
-    foreach($munten as $munt => $hoeveelMunt) {
-        $muntFix = doubleval($munt);
-        while($restBedrag >= $muntFix) {
-            $munten[$munt]++;
-            $restBedrag = round($restBedrag-$muntFix, 2);
-        }
+foreach($munten as $munt => $hoeveelMunt) {
+    $muntFix = doubleval($munt);
+    while($restBedrag >= $muntFix) {
+        $munten[$munt]++;
+        $restBedrag = round($restBedrag-$muntFix, 2);
     }
-    printCoin();
 }
 
-function printCoin(){
-    foreach($munten as $munt=>$hoeveelMunt) {
-        $muntFix = doubleval($munt);
-        if($hoeveelMunt >= 1) {
-            $tussen=explode(" ", $munt);
-            echo($muntFix." ".$tussen[1]." x ".$hoeveelMunt.PHP_EOL);
-        }
+foreach($munten as $munt=>$hoeveelMunt) {
+    $muntFix = doubleval($munt);
+    if($hoeveelMunt >= 1) {
+        $tussen=explode(" ", $munt);
+        echo(round($muntFix)." ".$tussen[1]." x ".$hoeveelMunt.PHP_EOL);
     }
 }
 
